@@ -32,6 +32,6 @@ public class SpringKafkaServiceApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		producer.send(14l, "{\"message\":  \"Test Message 14\"}");
+		//producer.send(14l, "{\"message\":  \"Test Message 14\"}");
 	}
 }
