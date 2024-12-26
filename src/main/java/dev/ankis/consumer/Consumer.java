@@ -17,7 +17,7 @@ public class Consumer implements ConsumerSeekAware {
     public void listen(@Payload String data,
                        Acknowledgment ack,
                        @Header(KafkaHeaders.RECEIVED_PARTITION) int partition,
-                       @Header(KafkaHeaders.OFFSET) int offset,
+                       @Header(KafkaHeaders.OFFSET) long offset,
                        @Header(KafkaHeaders.RECEIVED_TIMESTAMP) long timestamp){
         try{
             log.info("Partition {}, Offset {}, Timestamp {}, Data {}", partition, offset, timestamp, data);
@@ -28,6 +28,6 @@ public class Consumer implements ConsumerSeekAware {
 
     @Override
     public void onPartitionsAssigned(Map<TopicPartition, Long> assignments, ConsumerSeekCallback callback) {
-        callback.seekToTimestamp(assignments.keySet(), 1735195843000l);
+       // callback.seekToTimestamp(assignments.keySet(), 1735195843000l);
     }
 }

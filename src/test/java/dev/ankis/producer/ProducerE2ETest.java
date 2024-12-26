@@ -4,6 +4,7 @@ import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.common.serialization.LongDeserializer;
 import org.apache.kafka.common.serialization.StringDeserializer;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -70,5 +71,10 @@ public class ProducerE2ETest {
         ConsumerRecord<Long, String> message = records.poll(500, TimeUnit.MILLISECONDS);
         assertNotNull(message.value());
         assertEquals(messageValue, message.value());
+    }
+
+    @AfterAll
+    void tearDown() {
+        container.stop();
     }
 }
