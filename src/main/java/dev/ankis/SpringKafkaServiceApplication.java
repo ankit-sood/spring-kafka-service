@@ -1,19 +1,17 @@
 package dev.ankis;
 
-import dev.ankis.producer.Producer;
+import dev.ankis.producers.Producer;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.kafka.annotation.EnableKafka;
-import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.config.TopicBuilder;
 
 @SpringBootApplication
 public class SpringKafkaServiceApplication implements CommandLineRunner {
-	public static final String TOPIC_NAME = "spring-kafka-topic1";
+	public static final String TOPIC_NAME = "spring-kafka-topic2";
 
 	@Autowired
 	Producer producer;
@@ -32,6 +30,6 @@ public class SpringKafkaServiceApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		//producer.send(14l, "{\"message\":  \"Test Message 14\"}");
+		//producer.send("14", "{\"message\":  \"Test Message 14\"}", TOPIC_NAME);
 	}
 }

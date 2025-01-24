@@ -1,9 +1,7 @@
 package dev.ankis.configuration;
 
-import dev.ankis.producer.Producer;
+import dev.ankis.producers.Producer;
 import org.apache.kafka.clients.producer.ProducerConfig;
-import org.apache.kafka.common.serialization.LongSerializer;
-import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,20 +18,20 @@ import java.util.Map;
 public class ProducerConfiguration {
 
     @Bean
-    public Producer sender(KafkaTemplate<Long, String> template, KafkaProducerProperties producerProperties) {
+    public Producer sender(KafkaTemplate<String, String> template, KafkaProducerProperties producerProperties) {
         return new Producer(template, producerProperties.topicName());
     }
 
     @Bean
-    public KafkaTemplate<Long, String> kafkaTemplate(ProducerFactory<Long, String> producerFactory,
-                                                     ProducerListener<Long, String> producerListener) {
-        KafkaTemplate<Long, String> kafkaTemplate = new KafkaTemplate<>(producerFactory);
+    public KafkaTemplate<String, String> kafkaTemplate(ProducerFactory<String, String> producerFactory,
+                                                     ProducerListener<String, String> producerListener) {
+        KafkaTemplate<String, String> kafkaTemplate = new KafkaTemplate<>(producerFactory);
         kafkaTemplate.setProducerListener(producerListener);
         return kafkaTemplate;
     }
 
     @Bean
-    public ProducerFactory<Long, String> producerFactory(KafkaProducerProperties producerProperties) throws ClassNotFoundException {
+    public ProducerFactory<String, String> producerFactory(KafkaProducerProperties producerProperties) throws ClassNotFoundException {
         return new DefaultKafkaProducerFactory<>(senderProps(producerProperties));
     }
 

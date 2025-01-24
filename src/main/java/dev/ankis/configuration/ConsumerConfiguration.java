@@ -13,6 +13,7 @@ import org.springframework.kafka.listener.ContainerProperties;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.CountDownLatch;
 
 @Configuration
 @EnableKafka
@@ -24,9 +25,9 @@ public class ConsumerConfiguration {
     }
 
     @Bean
-    ConcurrentKafkaListenerContainerFactory<Long, String> kafkaListenerContainerFactory(ConsumerFactory<Long, String> consumerFactory,
+    ConcurrentKafkaListenerContainerFactory<String, String> kafkaListenerContainerFactory(ConsumerFactory<String, String> consumerFactory,
                                                                                         KafkaConsumerProperties kafkaConsumerProperties) {
-        ConcurrentKafkaListenerContainerFactory<Long, String> factory =
+        ConcurrentKafkaListenerContainerFactory<String, String> factory =
                 new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerFactory);
         factory.setConcurrency(kafkaConsumerProperties.concurrency());
@@ -35,7 +36,7 @@ public class ConsumerConfiguration {
     }
 
     @Bean
-    public ConsumerFactory<Long, String> consumerFactory(KafkaConsumerProperties kafkaConsumerProperties) throws ClassNotFoundException {
+    public ConsumerFactory<String, String> consumerFactory(KafkaConsumerProperties kafkaConsumerProperties) throws ClassNotFoundException {
         return new DefaultKafkaConsumerFactory<>(consumerProps(kafkaConsumerProperties));
     }
 

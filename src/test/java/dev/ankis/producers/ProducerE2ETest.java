@@ -1,4 +1,4 @@
-package dev.ankis.producer;
+package dev.ankis.producers;
 
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;

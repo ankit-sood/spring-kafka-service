@@ -1,6 +1,7 @@
 package dev.ankis.configuration;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
 
 @ConfigurationProperties("kafka.consumer")
 public record KafkaConsumerProperties(String bootstrapServers,
