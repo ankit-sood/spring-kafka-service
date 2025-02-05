@@ -1,5 +1,6 @@
 package dev.ankis.producer;
 
+import dev.ankis.producers.Producer;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.common.serialization.LongDeserializer;

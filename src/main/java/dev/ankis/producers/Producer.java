@@ -1,4 +1,4 @@
-package dev.ankis.producer;
+package dev.ankis.producers;
 
 import dev.ankis.SpringKafkaServiceApplication;
 import lombok.RequiredArgsConstructor;
