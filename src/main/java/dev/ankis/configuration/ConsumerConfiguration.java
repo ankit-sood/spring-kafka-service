@@ -18,7 +18,7 @@ import java.util.Map;
 @EnableKafka
 @EnableConfigurationProperties({KafkaConsumerProperties.class})
 public class ConsumerConfiguration {
-    @Bean
+    //@Bean
     public Consumer consumer() {
         return new Consumer();
     }
@@ -30,6 +30,8 @@ public class ConsumerConfiguration {
                 new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerFactory);
         factory.setConcurrency(kafkaConsumerProperties.concurrency());
+        //Comment out the following in case you need to process record by record
+        factory.setBatchListener(true);
         factory.getContainerProperties().setAckMode(ContainerProperties.AckMode.MANUAL_IMMEDIATE);
         return factory;
     }
@@ -47,6 +49,7 @@ public class ConsumerConfiguration {
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, Class.forName(kafkaConsumerProperties.valueDeserializer()));
         props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, kafkaConsumerProperties.autoOffsetReset());
         props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, false);
+        props.put(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, 2);
         return props;
     }
 }

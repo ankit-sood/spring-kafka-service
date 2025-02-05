@@ -13,7 +13,7 @@ import org.springframework.kafka.config.TopicBuilder;
 
 @SpringBootApplication
 public class SpringKafkaServiceApplication implements CommandLineRunner {
-	public static final String TOPIC_NAME = "spring-kafka-topic1";
+	public static final String TOPIC_NAME = "spring-kafka-topic3";
 
 	@Autowired
 	Producer producer;
@@ -25,13 +25,18 @@ public class SpringKafkaServiceApplication implements CommandLineRunner {
 	@Bean
 	public NewTopic topic(){
 		return TopicBuilder.name(TOPIC_NAME)
-				.partitions(2)
+				.partitions(1)
 				.replicas(1)
 				.build();
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
-		//producer.send(14l, "{\"message\":  \"Test Message 14\"}");
+//		producer.send("17", "{\"message\":  \"Test Message 12\"}", TOPIC_NAME);
+//		producer.send("18", "{\"message\":  \"Test Message 13\"}", TOPIC_NAME);
+//		producer.send("19", "{\"message\":  \"Test Message 14\"}", TOPIC_NAME);
+//		producer.send("20", "{\"message\":  \"Test Message 15\"}", TOPIC_NAME);
+//		producer.send("21", "{\"message\":  \"Test Message 16\"}", TOPIC_NAME);
+
 	}
 }
